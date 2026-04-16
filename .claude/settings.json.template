@@ -1,0 +1,90 @@
+{
+  "$schema": "https://code.anthropic.com/settings.json",
+
+  // ============================================================
+  // 模型选择
+  // ============================================================
+  // 可选值:
+  //   "opus[1m]"  - 最强模型，1M 上下文，适合复杂任务
+  //   "sonnet"    - 平衡模型，速度快，适合日常开发
+  //   "haiku"     - 最快模型，适合简单任务
+  "model": "sonnet",
+
+  // ============================================================
+  // 权限配置
+  // ============================================================
+  "permissions": {
+    // 允许的操作 - Claude 可以做什么
+    "allow": [
+      "Read(/**)",                      // 读取任何文件
+      "Write(./src/**)",                // 写入 src 目录
+      "Write(./components/**)",         // 写入 components 目录
+      "Write(./pages/**)",              // 写入 pages 目录
+      "Write(./hooks/**)",              // 写入 hooks 目录
+      "Write(./utils/**)",              // 写入 utils 目录
+      "Bash(npm *)",                    // 运行 npm 命令
+      "Bash(npx *)",                    // 运行 npx 命令
+      "Bash(git status)",               // Git 状态查看
+      "Bash(git diff)",                 // Git 差异查看
+      "Bash(git log)",                  // Git 日志查看
+      "Bash(git add)",                  // Git 添加文件
+      "Bash(git commit)",               // Git 提交
+      "WebSearch"                       // 网络搜索
+    ],
+
+    // 禁止的操作 - Claude 绝对不能做的事
+    "block": [
+      "Bash(rm -rf *)",                 // 禁止删除命令
+      "Bash(del *)",                    // 禁止删除命令 (Windows)
+      "Bash(git push --force *)",       // 禁止强制推送
+      "Write(./node_modules/**)",        // 禁止修改 node_modules
+      "Write(./dist/**)",               // 禁止修改 dist
+      "Write(./build/**)"               // 禁止修改 build
+    ]
+  },
+
+  // ============================================================
+  // 环境变量
+  // ============================================================
+  "env": {
+    "CLAUDE_DEFAULT_LANGUAGE": "zh-CN", // 默认语言
+    "NODE_ENV": "development"           // 环境模式
+  },
+
+  // ============================================================
+  // 自动化钩子 (可选)
+  // ============================================================
+  // 在特定事件发生时自动执行命令
+  "hooks": {
+    // 提交前自动执行
+    "pre-commit": [
+      {
+        "name": "代码检查",
+        "command": "npm run lint",
+        "run": "auto",                  // auto = 自动执行, manual = 需要确认
+        "fail_on_error": false          // 是否在失败时阻止提交
+      }
+    ]
+  },
+
+  // ============================================================
+  // MCP 服务器配置 (可选)
+  // ============================================================
+  // MCP = Model Context Protocol，给 Claude 安装"插件"
+  "mcpServers": {
+    // 示例：文件系统 MCP (跨项目搜索)
+    // "filesystem": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-filesystem", "你的项目路径"]
+    // },
+
+    // 示例：GitHub MCP (查看 GitHub 代码)
+    // "github": {
+    //   "command": "npx",
+    //   "args": ["-y", "@modelcontextprotocol/server-github"],
+    //   "env": {
+    //     "GITHUB_TOKEN": "你的 GitHub Token"
+    //   }
+    // }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://code.anthropic.com/settings.json",
+  "model": "sonnet",
+  "permissions": {
+    "allow": [
+      "Read(/**)",
+      "Write(./src/**)",
+      "Write(./components/**)",
+      "Write(./pages/**)",
+      "Write(./hooks/**)",
+      "Write(./utils/**)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(git log)",
+      "Bash(git add)",
+      "Bash(git commit)",
+      "WebSearch"
+    ],
+    "block": [
+      "Bash(rm -rf *)",
+      "Bash(del *)",
+      "Bash(git push --force *)",
+      "Write(./node_modules/**)",
+      "Write(./dist/**)",
+      "Write(./build/**)"
+    ]
+  },
+  "env": {
+    "CLAUDE_DEFAULT_LANGUAGE": "zh-CN"
+  }
+}

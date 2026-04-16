@@ -1,0 +1,22 @@
+# Claude Code 配置文件
+
+# 本地配置（不提交 Git）
+.claude/settings.local.json
+.claude/settings.secrets.json
+
+# 个人记忆（不提交 Git）
+.claude/memory/user-*.md
+
+# 操作系统
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# 编辑器
+.vscode/
+.idea/
+*.sublime-*
+
+# 日志
+*.log

@@ -1,0 +1,248 @@
+# ============================================================
+# Claude 项目文档模板
+# ============================================================
+# 使用说明：
+# 1. 复制此文件到你的项目根目录，重命名为 CLAUDE.md
+# 2. 替换所有 {{占位符}} 为你自己的内容
+# 3. 删除不需要的部分
+# ============================================================
+
+# {{项目名称}}
+
+> {{项目描述，一句话}}
+
+## 项目概述
+{{详细描述项目是做什么的，主要功能}}
+
+---
+
+## 技术栈
+
+### 前端框架
+- {{如：React 18}} + {{TypeScript 5.5}}
+- {{如：Vue 3}} + {{TypeScript}}
+
+### 样式方案
+- {{如：Tailwind CSS}}
+- {{如：CSS Modules / styled-components / Sass}}
+- {{UI 组件库：shadcn/ui / Ant Design / Element Plus}}
+
+### 状态管理
+- {{如：Zustand / Redux Toolkit / Pinia}}
+- {{如：React Query / SWR}} (服务器状态)
+
+### 路由
+- {{如：React Router v6 / Vue Router / Next.js App Router}}
+
+### 构建工具
+- {{如：Vite / Webpack / Next.js}}
+
+### 代码规范
+- {{如：ESLint + Prettier}}
+- {{如：Stylelint}}
+
+### 测试
+- {{如：Vitest / Jest}}
+- {{如：Testing Library}}
+
+---
+
+## 目录结构
+
+```
+{{你的项目目录结构}}
+src/
+├── assets/          # 静态资源
+├── components/      # 公共组件
+├── pages/          # 页面组件
+├── hooks/          # 自定义 Hooks
+├── utils/          # 工具函数
+├── stores/         # 状态管理
+├── services/       # API 服务
+├── types/          # 类型定义
+└── styles/         # 全局样式
+```
+
+---
+
+## 命名约定
+
+### 文件命名
+- 组件文件：`PascalCase` (如 `UserProfile.tsx`)
+- 工具文件：`camelCase` (如 `formatDate.ts`)
+- 类型文件：`PascalCase` (如 `UserTypes.ts`)
+- 样式文件：与组件同名 (如 `UserProfile.module.css`)
+
+### 变量命名
+- 组件/类型：`PascalCase`
+- 变量/函数：`camelCase`
+- 常量：`UPPER_SNAKE_CASE`
+- 私有变量：`_camelCase`
+
+---
+
+## 编码规范
+
+### 组件规范
+1. {{如：使用函数式组件，不用类组件}}
+2. {{如：Props 必须定义 interface}}
+3. {{如：禁止使用 any，用 unknown 代替}}
+4. {{如：组件超过 200 行必须拆分}}
+
+### 代码风格
+1. {{如：优先使用箭头函数}}
+2. {{如：优先使用解构赋值}}
+3. {{如：只注释"为什么"，不注释"做什么"}}
+4. {{如：使用 Prettier 默认配置}}
+
+### 导入顺序
+```typescript
+// 1. 外部库
+import React from 'react'
+import { useState } from 'react'
+
+// 2. 内部模块
+import { Button } from '@/components/ui/button'
+import { useAuth } from '@/hooks/use-auth'
+
+// 3. 样式
+import styles from './UserProfile.module.css'
+
+// 4. 类型导入
+import type { User } from '@/types'
+```
+
+---
+
+## Git 工作流
+
+### 分支策略
+- `main` - 主分支（生产环境）
+- `develop` - 开发分支
+- `feature/*` - 功能分支
+- `fix/*` - 修复分支
+- `hotfix/*` - 紧急修复
+
+### 提交规范
+```
+<type>(<scope>): <subject>
+
+类型:
+- feat: 新功能
+- fix: 修复 bug
+- docs: 文档更新
+- style: 代码格式
+- refactor: 重构
+- test: 测试
+- chore: 构建/工具
+```
+
+### 提交前检查
+- [ ] 代码通过 lint 检查
+- [ ] 代码通过类型检查
+- [ ] 测试通过
+- [ ] 更新了相关文档
+
+---
+
+## 常用命令
+
+```bash
+# 开发
+npm run dev          # 启动开发服务器
+
+# 构建
+npm run build        # 生产构建
+npm run preview      # 预览构建
+
+# 代码质量
+npm run lint         # ESLint 检查
+npm run lint:fix     # ESLint 自动修复
+npm run format       # Prettier 格式化
+npm run type-check   # TypeScript 类型检查
+
+# 测试
+npm run test         # 运行测试
+npm run test:ui      # 测试 UI
+npm run coverage     # 测试覆盖率
+
+# 其他
+npm run clean        # 清理构建文件
+```
+
+---
+
+## API 规范
+
+### 请求方式
+- {{如：使用封装的 axios 实例}}
+- {{如：使用 fetch API}}
+
+### 错误处理
+- {{如：统一使用 try/catch}}
+- {{如：错误信息使用 toast 提示}}
+
+### 数据格式
+- {{如：统一使用 snake_case / camelCase}}
+- {{如：时间格式：ISO 8601}}
+
+---
+
+## 状态管理规范
+
+### 什么状态放哪里
+- 组件内部状态 → `useState`
+- 跨组件状态 → {{状态管理库}}
+- 服务器状态 → {{React Query / SWR}}
+- 全局配置 → {{Context / 状态管理库}}
+
+---
+
+## 注意事项
+
+### 禁止事项
+- ❌ {{如：不要使用 class 组件}}
+- ❌ {{如：不要使用 Redux}}
+- ❌ {{如：不要用 fetch，用封装的 request}}
+- ❌ {{如：不要写死数据，用环境变量}}
+
+### 推荐做法
+- ✅ {{如：优先使用 shadcn/ui 组件}}
+- ✅ {{如：错误处理必须考虑边界情况}}
+- ✅ {{如：组件拆分要合理}}
+
+---
+
+## 可用的工具函数
+
+在 `utils/` 目录下已封装：
+- `{{formatDate}}` - 日期格式化
+- `{{formatMoney}}` - 金额格式化
+- `{{debounce}}` - 防抖
+- `{{throttle}}` - 节流
+- `{{storage}}` - 本地存储封装
+
+---
+
+## 我的个人偏好
+
+### 代码风格
+- {{如：习惯用箭头函数}}
+- {{如：习惯解构赋值}}
+- {{如：不喜欢太复杂的嵌套}}
+
+### 学习偏好
+- {{如：希望代码注释多一点}}
+- {{如：希望解释清楚为什么这样写}}
+- {{如：希望给我学习资源链接}}
+
+---
+
+## 我需要你帮我
+
+1. **写符合上述规范的代码**
+2. **代码要可读，不要写太复杂**
+3. **添加必要的注释**
+4. **帮我检查代码问题**
+5. **生成单元测试**
+6. **解释我不懂的地方**
