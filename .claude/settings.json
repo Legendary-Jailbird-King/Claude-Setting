@@ -1,6 +1,7 @@
 {
   "$schema": "https://code.anthropic.com/settings.json",
   "model": "sonnet",
+  "locale": "zh-CN",
   "permissions": {
     "allow": [
       "Read(/**)",
